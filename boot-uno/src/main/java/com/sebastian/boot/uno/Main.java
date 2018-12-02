@@ -7,13 +7,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 /**
  * obtener todos los beans del contexto.
+ * --spring.profiles.active=desa|prod
  * 
  * @author Sebastian Avila A.
  *
  */
+@PropertySources({@PropertySource("classpath:otros.properties")}) // agregado
 @SpringBootApplication
 public class Main implements CommandLineRunner {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
