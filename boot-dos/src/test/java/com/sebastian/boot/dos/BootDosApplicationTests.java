@@ -1,16 +1,23 @@
 package com.sebastian.boot.dos;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.Mockito;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
+
+
 public class BootDosApplicationTests {
-
+	final Multiplicador multi = Mockito.mock(Multiplicador.class);
+	final Multiplicador itlum = new Multiplicador(); 
 	@Test
-	public void contextLoads() {
+	public void operacion() {
+		when(multi.multiplicar(2, 2)).thenReturn(4);
+		multi.multiplicar(2, 2);
+		verify(multi, times(1)).multiplicar(2, 2);
+		assertThat(itlum.multiplicar(2, 2)).isEqualTo(4);
+		assertThat(itlum.esOperacion("*")).isEqualTo(true);
+		assertThat(itlum.esOperacion("/")).isEqualTo(false);
 	}
 
 }
